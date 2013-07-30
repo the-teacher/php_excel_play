@@ -4,6 +4,12 @@
 
 Use Unix line endings with Sublime [View =>Line Endings => Unix]
 
+**Preferences => Stettings - Default**
+
+```
+"default_line_ending": "unix"
+```
+
 #### PHP
 
 ```
@@ -14,7 +20,11 @@ Use Unix line endings with Sublime [View =>Line Endings => Unix]
   Zend Engine v2.3.0, Copyright (c) 1998-2010 Zend Technologies
 ```
 
-#### Example of php file
+#### Example of new php file
+
+```
+touch filename.php
+```
 
 ```php
 #!/usr/bin/php
@@ -23,6 +33,16 @@ Use Unix line endings with Sublime [View =>Line Endings => Unix]
   // your code here
   
 ?>
+```
+
+then
+
+```
+chmod 744 filename.php
+```
+
+```
+./filename.php
 ```
 
 #### PHPExcel includes
