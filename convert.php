@@ -1,7 +1,5 @@
 #!/usr/bin/php
 <?php
-  /* User Unix line endings with Sublime [View =>Line Endings => Unix] */
-
   include './PHPExcel/Classes/PHPExcel.php';
   include './PHPExcel/Classes/PHPExcel/Calculation.php';
   include './PHPExcel/Classes/PHPExcel/Cell.php';
@@ -30,6 +28,9 @@
   $cell_vall = 'Php Excel Exported';
   $sheet->setCellValue('A1', $cell_vall);
   $sheet->setCellValueByColumnAndRow(0, 1, $cell_vall);
+
+  // rows count
+  echo $sheet->getHighestRow();
 
   // Create writer and save
   $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, $excel_file_type);
