@@ -55,6 +55,8 @@ include './PHPExcel/Classes/PHPExcel/Cell.php';
 
 #### Project Structure
 
+**docs** -- notes about functions
+
 **files** -- excel files for processing
 
 **fn_tests** -- playground for PHP code
