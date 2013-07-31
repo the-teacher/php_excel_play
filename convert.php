@@ -1,8 +1,6 @@
 #!/usr/bin/php
 <?php
+  error_reporting(E_ALL);
   $root_path = realpath(dirname(__FILE__));
-
-  echo "\n";
-  echo $root_path;
-  echo "\n";
+  include "$root_path/converter/convert.php";
 ?>

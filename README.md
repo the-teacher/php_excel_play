@@ -52,3 +52,13 @@ include './PHPExcel/Classes/PHPExcel.php';
 include './PHPExcel/Classes/PHPExcel/Calculation.php';
 include './PHPExcel/Classes/PHPExcel/Cell.php';
 ```
+
+#### Project Structure
+
+**files** -- excel files for processing
+
+**fn_tests** -- playground for PHP code
+
+**converter** -- main folder for my experiments
+
+**converter.php** -- excel files processing

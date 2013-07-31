@@ -1,8 +1,7 @@
-#!/usr/bin/php
 <?php
-  include './PHPExcel/Classes/PHPExcel.php';
-  include './PHPExcel/Classes/PHPExcel/Calculation.php';
-  include './PHPExcel/Classes/PHPExcel/Cell.php';
+  include "$root_path/PHPExcel/Classes/PHPExcel.php";
+  include "$root_path/PHPExcel/Classes/PHPExcel/Calculation.php";
+  include "$root_path/PHPExcel/Classes/PHPExcel/Cell.php";
 
   // vars
   $excel_file_type = 'Excel2007';
