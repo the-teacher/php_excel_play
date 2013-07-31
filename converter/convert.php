@@ -1,39 +1,44 @@
 <?php
-  include "$root_path/converter/helpers.php";
+  include "$root_path/converter/table_fields.php";
+  include "$root_path/converter/helpers/common.php";
+  include "$root_path/converter/helpers/php_excel.php";
+  include "$root_path/converter/helpers/converter.php";
 
   include "$root_path/PHPExcel/Classes/PHPExcel.php";
   include "$root_path/PHPExcel/Classes/PHPExcel/Calculation.php";
   include "$root_path/PHPExcel/Classes/PHPExcel/Cell.php";
 
-  // vars
-  $excel_file_type = 'Excel2007';
+  // config vars
+  $res_json     = array();
+  $shiftFromTop = 10;
+
   $inputFileName   = "$root_path/files/excel_import.xlsx";
   $outputFileName  = "$root_path/files/out_excel_import.xlsx";
 
   // cleanup
   rm_file($outputFileName);
+  
+  // read file, set sheet
+  $ExcelFile = read_excel_2007($inputFileName);
+  $sheet     = $ExcelFile->setActiveSheetIndex(0);
 
-  // // open and load
-  $objReader   = PHPExcel_IOFactory::createReader($excel_file_type);
-  $objPHPExcel = $objReader->load($inputFileName);
+  // rows count
+  $rows_count = $sheet->getHighestRow();
 
-  // // Set Sheet
-  $sheet = $objPHPExcel->setActiveSheetIndex(0);
-  $sheet = $objPHPExcel->getActiveSheet();
+  // Build JSON
+  for($row = $shiftFromTop; $row <= $rows_count; $row++){
+    $filled = filled_row($sheet, $row);
 
-  // Get value
-  // echo $sheet->getCell('A1')->getValue();
-  // echo $sheet->getCellByColumnAndRow(0, 1)->getValue();
+    if($filled){
+      $fields = CSV_FIELDS();
+      $res_json[$row] = array();
 
-  // // Set value
-  $cell_vall = 'Php Excel Exported';
-  // $sheet->setCellValue('A1', $cell_vall);
-  $sheet->setCellValueByColumnAndRow(0, 1, $cell_vall);
+      foreach($fields as $col_index => $name){
+        $cell_value = $sheet->getCellByColumnAndRow($col_index, $row)->getValue();  
+        $res_json[$row][$name] = $cell_value;
+      }
+    }
+  }
 
-  // // rows count
-  // echo $sheet->getHighestRow();
-
-  // // Create writer and save
-  $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, $excel_file_type);
-  $objWriter->save($outputFileName);
+  echo json_encode($res_json);
 ?>
