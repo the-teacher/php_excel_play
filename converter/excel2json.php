@@ -25,5 +25,8 @@
     }
   }
 
-  exit(json_encode($res_json));
+  // file = File.open(TMP_DATA_PATH, "w")
+  // file.write(json)
+  // file.close
+  // exit(json_encode($res_json));
 ?>
