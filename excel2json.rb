@@ -8,10 +8,10 @@ require 'json'
 ROOT_PATH      = File.dirname File.absolute_path(__FILE__)
 
 SRC_EXCEL_PATH = ROOT_PATH + "/files/excel_import.xlsx"
-EXTRACT_SCRIPT = ROOT_PATH + "/extract_data.php"
+READER_SCRIPT  = ROOT_PATH + "/excel2json.php"
 TMP_DATA_PATH  = ROOT_PATH + "/files/tmp.json"
 
-line = Cocaine::CommandLine.new(EXTRACT_SCRIPT, ":input_file")
+line = Cocaine::CommandLine.new(READER_SCRIPT, ":input_file")
 
 begin
   json = line.run(input_file: SRC_EXCEL_PATH)
