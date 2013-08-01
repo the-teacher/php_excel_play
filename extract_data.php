@@ -5,8 +5,6 @@
   $ROOT_PATH = realpath(dirname(__FILE__));
   include "$ROOT_PATH/converter/includes.php";
 
-  $inputFileName  = "$ROOT_PATH/files/$argv[1]";
-  $outputFileName = "$ROOT_PATH/files/$argv[2]";
-
-  include "$ROOT_PATH/converter/convert.php";
+  $inputFileName = $argv[1];
+  include "$ROOT_PATH/converter/excel2json.php";
 ?>
