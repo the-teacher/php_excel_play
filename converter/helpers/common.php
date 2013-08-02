@@ -10,4 +10,13 @@
     }
     return unlink($file_path);
   }
+  // just play with code
+  // use file_get_contents instead
+  function get_file_content($file_path){
+    if(!file_exists($file_path)){ return false; }
+    $tmpf    = fopen($file_path, 'r');
+    $content = fread($tmpf, filesize($file_path));
+    fclose($tmpf);
+    return $content;
+  }
 ?>

@@ -4,7 +4,7 @@
   $shiftFromTop = 10;
   
   // read file, set sheet
-  $ExcelFile = read_excel_2007($inputFileName);
+  $ExcelFile = read_excel_2007($SRC_FILE);
   $sheet     = $ExcelFile->setActiveSheetIndex(0);
 
   // rows count
@@ -25,8 +25,7 @@
     }
   }
 
-  // file = File.open(TMP_DATA_PATH, "w")
-  // file.write(json)
-  // file.close
-  // exit(json_encode($res_json));
+  $json = json_encode($res_json);
+  $tmpf = fopen($TMP_FILE, 'w');
+  fwrite($tmpf, $json);
 ?>

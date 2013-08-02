@@ -2,22 +2,27 @@
 puts `clear`
 
 require 'rubygems'
+
+require 'fileutils'
 require 'cocaine'
 require 'json'
 
-ROOT_PATH      = File.dirname File.absolute_path(__FILE__)
-
-TMPL_EXCEL_PATH = ROOT_PATH + "/files/excel_template.xlsx"
-WRITER_SCRIPT   = ROOT_PATH + "/json2excel.php"
+ROOT_PATH       = File.dirname File.absolute_path(__FILE__)
+WRITER_SCRIPT   = ROOT_PATH + "/converter/json2excel_base.php"
 TMP_DATA_PATH   = ROOT_PATH + "/files/tmp.json"
+TMPL_EXCEL_PATH = ROOT_PATH + "/files/excel_template.xlsx"
+OUT_EXCEL_PATH  = ROOT_PATH + "/files/output_excel.xlsx"
 
-line = Cocaine::CommandLine.new(WRITER_SCRIPT, ":tmp_file :template :output")
+FileUtils.rm(OUT_EXCEL_PATH, force: true)
+
+line = Cocaine::CommandLine.new(WRITER_SCRIPT, ":root_path :tmp_file :template :output")
 
 begin
-  json = line.run(
-    tmp_file: TMP_DATA_PATH,
-    template: TMPL_EXCEL_PATH,
-    output:   OUT_EXCEL_PATH
+  puts line.run(
+    root_path: ROOT_PATH,
+    tmp_file:  TMP_DATA_PATH,
+    template:  TMPL_EXCEL_PATH,
+    output:    OUT_EXCEL_PATH
   )
 rescue => e
   puts e.message
