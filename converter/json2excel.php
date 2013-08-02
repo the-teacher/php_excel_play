@@ -1,18 +1,12 @@
 <?php
   $json = file_get_contents($TMP_FILE);
-  $data = json_decode($json);
+  $data = json_decode($json, true);
+  $fields = CSV_FIELDS();
 
-  foreach($data as $item){
-    echo($item->{'excel_id'}).PHP_EOL;
+  foreach($data as $index => $item){
+    foreach($fields as $col_index => $name){
+      echo "$name: $item[$name]".PHP_EOL;
+    }
+    echo PHP_EOL.PHP_EOL;
   }
-
-  // $ExcelFile = read_excel_2007($TMPL_FILE);
-  // $sheet     = $ExcelFile->setActiveSheetIndex(0);
-
-  // $fields = CSV_FIELDS();
-
-
-  // foreach($fields as $col_index => $name){
-
-  // }
 ?>
